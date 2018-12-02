@@ -78,14 +78,17 @@ defmodule Mix.Tasks.Day1 do
   use Mix.Task
 
   def run(_args) do
-    { :ok, input } = File.read("inputs/day1.txt")
+    { :ok, input } = File.read("../inputs/day1.txt")
     frequencies = input
                   |> String.split
                   |> Enum.map(&String.to_integer/1)
 
-    # final_frequency = frequencies |> Enum.sum
-    # IO.puts("Hey Commander! I gave my best and according to my calculatiosn the the final frequency is #{final_frequency}!")
+    final_frequency = frequencies |> Enum.sum
+    IO.puts("Hey Commander! I gave my best and according to my calculatiosn the the final frequency is #{final_frequency}!")
 
+    IO.puts("This will take a while..")
+    repeated_frequency = detect_repeated_frequency(frequencies)
+    IO.puts("Hey Chief. Try `#{repeated_frequency}` for the second part.")
   end
 
 
