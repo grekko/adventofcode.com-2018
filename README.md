@@ -1,4 +1,4 @@
-# Advent of Code ­ 2018 Edition
+# Advent of Code [2018 Edition 🎄]
 
 [Advent of Code](http://adventofcode.com/2018/about) by [Eric Wastl](http://was.tl/)
 
