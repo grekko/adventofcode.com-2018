@@ -83,7 +83,33 @@ defmodule Mix.Tasks.Day1 do
                   |> String.split
                   |> Enum.map(&String.to_integer/1)
 
-    final_frequency = frequencies |> Enum.sum
-    IO.puts("Hey Commander! I gave my best and according to my calculatiosn the the final frequency is #{final_frequency}!")
+    # final_frequency = frequencies |> Enum.sum
+    # IO.puts("Hey Commander! I gave my best and according to my calculatiosn the the final frequency is #{final_frequency}!")
+
+  end
+
+
+  @doc ~S"""
+  Repetitively iterates over the given frequency list and returns the first
+  repeated frequency in the process.
+
+  ## Examples
+
+      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+1, -1])
+      0
+
+      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+3, +3, +4, -2, -4])
+      10
+
+      iex> Mix.Tasks.Day1.detect_duplicate_frequency([-6, +3, +8, +5, -6])
+      5
+
+      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+7, +7, -2, -7, -4])
+      14
+
+  """
+
+  def detect_duplicate_frequency(list) do
+    0
   end
 end
