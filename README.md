@@ -13,3 +13,8 @@ Share it (via
 or
 [Reddit](http://www.reddit.com/submit?url=https%3A%2F%2Fadventofcode%2Ecom%2F&title=Daily+programming+puzzles+at+Advent+of+Code))
 with others, or directly via [PayPal or Coinbase](https://adventofcode.com/2018/support).
+
+
+## Solutions
+
+Elixir: [![Build Status](https://semaphoreci.com/api/v1/grekko/adventofcode-com-2018/branches/master/badge.svg)](https://semaphoreci.com/grekko/adventofcode-com-2018)
