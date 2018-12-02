@@ -111,6 +111,7 @@ defmodule Mix.Tasks.Day1 do
       14
   """
 
+  # TODO: Use MapSet instead of List
   def detect_repeated_frequency(list) do
     detect_repeated_frequency(list, 0, [])
   end
