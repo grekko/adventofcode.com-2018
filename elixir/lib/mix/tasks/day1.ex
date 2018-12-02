@@ -98,21 +98,38 @@ defmodule Mix.Tasks.Day1 do
 
   ## Examples
 
-      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+1, -1])
+      iex> Mix.Tasks.Day1.detect_repeated_frequency([+1 -1])
       0
 
-      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+3, +3, +4, -2, -4])
+      iex> Mix.Tasks.Day1.detect_repeated_frequency([+3, +3, +4, -2, -4])
       10
 
-      iex> Mix.Tasks.Day1.detect_duplicate_frequency([-6, +3, +8, +5, -6])
+      iex> Mix.Tasks.Day1.detect_repeated_frequency([-6, +3, +8, +5, -6])
       5
 
-      iex> Mix.Tasks.Day1.detect_duplicate_frequency([+7, +7, -2, -7, -4])
+      iex> Mix.Tasks.Day1.detect_repeated_frequency([+7, +7, -2, -7, -4])
       14
-
   """
 
-  def detect_duplicate_frequency(list) do
-    0
+  def detect_repeated_frequency(list) do
+    detect_repeated_frequency(list, 0, [])
+  end
+
+  def detect_repeated_frequency(list, index, frequencies) do
+    nindex = if index >= length(list) do
+      0
+    else
+      index
+    end
+
+    current_frequency = List.last(frequencies) || 0
+    frequency_change = Enum.at(list, nindex)
+    next_frequency = current_frequency + frequency_change
+
+    if Enum.member?(frequencies, next_frequency) do
+      next_frequency
+    else
+      detect_repeated_frequency(list, nindex+1, frequencies ++ [next_frequency])
+    end
   end
 end
