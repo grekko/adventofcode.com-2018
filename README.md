@@ -15,6 +15,8 @@ or
 with others, or directly via [PayPal or Coinbase](https://adventofcode.com/2018/support).
 
 
-## Solutions
+## Elixir Solutions
 
-Elixir: [![Build Status](https://semaphoreci.com/api/v1/grekko/adventofcode-com-2018/branches/master/badge.svg)](https://semaphoreci.com/grekko/adventofcode-com-2018)
+[![Build Status](https://semaphoreci.com/api/v1/grekko/adventofcode-com-2018/branches/master/badge.svg)](https://semaphoreci.com/grekko/adventofcode-com-2018)
+
+- Day1: [elixir/lib/mix/tasks/day1.ex](elixir/lib/mix/tasks/day1.ex)
