@@ -48,6 +48,39 @@ defmodule Mix.Tasks.Day2 do
 
   def run(_args) do
     { :ok, input } = File.read("../inputs/day2.txt")
-    IO.puts("My input: #{input}")
+    box_ids = input |> String.split
+    checksum = checksum_for_box_ids(box_ids)
+    IO.puts("Try #{checksum} for the checksum!")
+  end
+
+  @doc ~S"""
+  Calculates checksum for the given box ids.
+
+  ## Examples
+
+      iex> Mix.Tasks.Day2.checksum_for_box_ids(["aaabcd", "aabbbc"])
+      2
+
+      iex> Mix.Tasks.Day2.checksum_for_box_ids(["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"])
+      12
+  """
+
+  def checksum_for_box_ids(box_ids) do
+    duos = box_ids
+           |> Enum.map(fn(x) -> count_word_has_n_letters(x, 2) end)
+           |> Enum.sum
+    triplets = box_ids
+               |> Enum.map(fn(x) -> count_word_has_n_letters(x, 3) end)
+               |> Enum.sum
+    duos * triplets
+  end
+
+  def count_word_has_n_letters(word, count) do
+    if word_has_exactly_n_letters(word, count), do: 1, else: 0
+  end
+
+  def word_has_exactly_n_letters(word, count) do
+    chars = word |> String.codepoints
+    chars |> Enum.any?(fn(x) -> Enum.count(chars, fn(char) -> char == x end) == count end)
   end
 end
