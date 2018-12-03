@@ -42,6 +42,31 @@
 # Multiplying these together produces a checksum of 4 * 3 = 12.
 #
 # What is the checksum for your list of box IDs?
+#
+#
+# --- Part Two ---
+#
+# Confident that your list of box IDs is complete, you're ready to find the
+# boxes full of prototype fabric.
+#
+# The boxes will have IDs which differ by exactly one character at the same
+# position in both strings. For example, given the following box IDs:
+#
+# abcde
+# fghij <- take this
+# klmno
+# pqrst
+# fguij <- compare
+# axcye
+# wvxyz
+#
+# The IDs abcde and axcye are close, but they differ by two characters (the
+# second and fourth). However, the IDs fghij and fguij differ by exactly one
+# character, the third (h and u). Those must be the correct boxes.
+#
+# What letters are common between the two correct box IDs? (In the example
+# above, this is found by removing the differing character from either ID,
+# producing fgij.)
 
 defmodule Mix.Tasks.Day2 do
   use Mix.Task
@@ -51,6 +76,52 @@ defmodule Mix.Tasks.Day2 do
     box_ids = input |> String.split
     checksum = checksum_for_box_ids(box_ids)
     IO.puts("Try #{checksum} for the checksum!")
+
+    common_box_id = detect_common_letter_box_ids(box_ids)
+    IO.puts("If I am not mistaken `#{common_box_id}` should open the door!")
+  end
+
+  def detect_common_letter_box_ids([ box_id | box_ids ]) do
+    if partner = find_partner(box_id, box_ids) do
+      partner
+    else
+      detect_common_letter_box_ids(box_ids)
+    end
+  end
+
+
+  @doc ~S"""
+  Finds partner for given box_id in list of box_ids.
+
+  ## Examples
+
+      iex> Mix.Tasks.Day2.find_partner("abcd", ["abxx", "abxy", "abdd"])
+      "abd"
+
+  """
+
+  def find_partner(box_id, box_ids) do
+    partner = box_ids |> Enum.find(fn(x) -> char_difference_one(box_id, x) end)
+    if partner do
+      chars1 = partner |> String.codepoints
+      chars2 = box_id |> String.codepoints
+
+      chars1
+        |> Enum.zip(chars2)
+        |> Enum.filter(fn {c1, c2} -> c1 == c2 end)
+        |> Enum.map(fn {c, c} -> c end)
+        |> Enum.join
+    end
+  end
+
+  def char_difference_one(word1, word2) do
+    chars1 = word1 |> String.codepoints
+    chars2 = word2 |> String.codepoints
+
+    chars1
+      |> Enum.zip(chars2)
+      |> Enum.count(fn {c1, c2} -> c1 != c2 end)
+      |> Kernel.==(1)
   end
 
   @doc ~S"""
